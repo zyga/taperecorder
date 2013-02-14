@@ -39,7 +39,7 @@ class ReprReactingDescriptor(ReactingDescriptor):
 
     def __get__(self, instance, owner):
         if use_real_repr:
-            return type(object).__repr__(instance)
+            return lambda: "<%s instance at %#0x>" % (owner.__name__, id(instance))
         else:
             return super(ReprReactingDescriptor, self).__get__(instance, owner)
 
